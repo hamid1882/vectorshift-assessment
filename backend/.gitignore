@@ -13,3 +13,4 @@ local_settings.py
 .vscode/
 # PyCharm
 .idea/
+.env

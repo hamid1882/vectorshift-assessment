@@ -7,12 +7,16 @@ const selector = (state) => ({
     edges: state.edges,
 });
 
+const BASE_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8000';
+
 export const SubmitButton = () => {
     const { nodes, edges } = useStore(selector, shallow);
 
+    console.log('BASE_URL: ', BASE_URL)
+
     const handleSubmit = (e) => {
         e.preventDefault?.(); // safe even if not inside a form
-        fetch('http://localhost:8000/pipelines/parse', {
+        fetch(`${BASE_URL}/pipelines/parse`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ nodes, edges }),
